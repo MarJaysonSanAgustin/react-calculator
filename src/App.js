@@ -10,9 +10,9 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [firstInput, setFirstInput] = useState(null);
-  const [secondInput, setSecondInput] = useState(null);
-  const [output, setOutput] = useState(null);
+  const [firstInput, setFirstInput] = useState('');
+  const [secondInput, setSecondInput] = useState('');
+  const [output, setOutput] = useState('');
 
   useEffect(() => {
     console.log(`Output >> ${output}`);
@@ -50,6 +50,12 @@ function App() {
     const input2 = secondInput ? +secondInput : 0
     setOutput(input1 / input2);
   }
+  
+  const handleReset = () => {
+    setFirstInput('');
+    setSecondInput('');
+    setOutput('');
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -63,7 +69,10 @@ function App() {
           <Button className="p-button-sm" style={{ marginLeft: '3px', marginRight: '3px' }} icon="pi pi-times" onClick={handleMultiplication}/>
           <Button className="p-button-sm" style={{ marginLeft: '3px', marginRight: '3px' }} label="/" onClick={handleDivision}/>
         </div>
-        <InputText readOnly placeholder='Output' value={output} />
+        <InputText style={{ marginBottom: '5px' }} readOnly placeholder='Output' value={output} />
+        <div style={{ marginBottom: '5px' }}>
+          <Button className="p-button-sm" style={{ marginLeft: '3px', marginRight: '3px' }} icon="pi pi-replay" onClick={handleReset}/>
+        </div>
       </header>
     </div>
   );
